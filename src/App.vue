@@ -14,7 +14,7 @@
     </div>
     <dic class="col-12">&nbsp;</dic>
 
-    <h1 class="col-12">Para el cumpleaños de Clarita</h1>
+    <h1 class="col-12">Para el cumpleaños de Clarita <span>&#128149;</span></h1>
     <dic class="col-12">&nbsp;</dic>
 
     <p class="lead col-12">Ya casi cumple años mi persona favorita.</p>
@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       startTime: Date.now(),
-      endTime: "June 7, 2021 07:00:00",
+      endTime: new Date("June 7, 2021 07:00:00"),
       times: [
         { id: 0, texto: "Dias", tiempo: 1 },
         { id: 1, texto: "Horas", tiempo: 1 },
@@ -47,6 +47,7 @@ export default {
       progreso: 0,
       // isActive: false,
       timeinterval: 1000,
+      showRegalo: false,
     };
   },
   components: {
@@ -54,7 +55,7 @@ export default {
     ProgressItem,
   },
   methods: {
-    updateTimer: function () {
+    updateTimer: function() {
       if (
         this.times[3].tiempo > 0 ||
         this.times[2].tiempo > 0 ||
@@ -69,8 +70,8 @@ export default {
         this.progreso = 0;
       }
     },
-    getTimeRemaining: function () {
-      let t = Date.parse(new Date(this.endTime)) - Date.parse(new Date());
+    getTimeRemaining: function() {
+      let t = Date.parse(this.endTime) - Date.parse(new Date());
       if (t >= 0) {
         this.times[3].tiempo = Math.floor((t / 1000) % 60); //seconds
         this.times[2].tiempo = Math.floor((t / 1000 / 60) % 60); //minutes
@@ -78,12 +79,11 @@ export default {
         this.times[0].tiempo = Math.floor(t / (1000 * 60 * 60 * 24)); //days
       } else {
         this.times.forEach((time) => (time.tiempo = 0));
-        this.progreso = 0;
+        this.progreso = 100;
       }
     },
-    updateProgressBar: function () {
-      let startTime = Date.parse(new Date("June 7, 2020 00:00:00"));
-
+    updateProgressBar: function() {
+      let startTime = Date.parse(new Date(this.endTime).getFullYear() - 1);
       // let startTime = Date.parse(new Date(this.startTime));
       let currentTime = Date.parse(new Date());
       let endTime = Date.parse(new Date(this.endTime));
@@ -92,9 +92,13 @@ export default {
       ).toFixed(6);
     },
   },
-  created: function () {
-    this.updateTimer();
-    this.timeinterval = setInterval(() => this.updateTimer(), 1000);
+  created: function() {
+    if (this.progreso <= 100) {
+      this.updateTimer();
+      this.timeinterval = setInterval(() => this.updateTimer(), 1000);
+    } else {
+      this.showRegalo = true;
+    }
   },
 };
 </script>
