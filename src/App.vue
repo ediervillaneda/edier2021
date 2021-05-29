@@ -28,8 +28,8 @@ export default {
   data() {
     return {
       startTime: Date.now(),
-      endTime: new Date("May 29, 2021 001:43:00"),
-      // endTime: new Date("June 7, 2021 07:00:00"),
+      // endTime: new Date("May 29, 2021 001:43:00"),
+      endTime: new Date("June 7, 2021 07:00:00"),
       times: [
         { id: 0, texto: "Dias", tiempo: 1 },
         { id: 1, texto: "Horas", tiempo: 1 },
