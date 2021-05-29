@@ -1,43 +1,35 @@
 <template>
-  <main class="px-3 row d-flex align-content-center flex-wrap">
-    <h1 class="col-12">Faltan</h1>
-    <dic class="col-12">&nbsp;</dic>
-    <div class="col-12 container-fluid m-auto text-center">
-      <div class="row">
+  <div>
+    <fireworks v-if="regalo"></fireworks>
+
+    <main class="d-flex align-content-around flex-wrap align-content-between text-center" style="height: 90vh!important;" v-else>
+      <h1 class="w-100">Faltan</h1>
+      <div class="row d-flex justify-content-between w-100">
         <div v-for="time in times" :key="time.id" class="col-3">
           <time-item :time="time"></time-item>
         </div>
+        <div class=" col-12 w-100" v-if="progreso">
+          <progress-item :progreso="progreso"></progress-item>
+        </div>
       </div>
-    </div>
-    <div class="col-12">
-      <progress-item :progreso="progreso"></progress-item>
-    </div>
-    <dic class="col-12">&nbsp;</dic>
-
-    <h1 class="col-12">Para el cumpleaños de Clarita <span>&#128149;</span></h1>
-    <dic class="col-12">&nbsp;</dic>
-
-    <p class="lead col-12">Ya casi cumple años mi persona favorita.</p>
-    <dic class="col-12">&nbsp;</dic>
-
-    <p class="lead col-12" v-if="progreso >= 100">
-      <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white"
-        >mira este detalle</a
-      >
-    </p>
-  </main>
+      <h1 class="w-100"><span>&#128149;</span>Para el cumpleaños de Clarita <span>&#128149;</span></h1>
+      <p class="w-100">Ya casi cumple años mi persona favorita.</p>
+    </main>
+  </div>
 </template>
 
 <script>
 import TimeItem from "./components/TimeItem.vue";
 import ProgressItem from "./components/ProgressItem.vue";
+import Fireworks from "./components/Fireworks.vue";
 
 export default {
   name: "App",
   data() {
     return {
       startTime: Date.now(),
-      endTime: new Date("June 7, 2021 07:00:00"),
+      endTime: new Date("May 29, 2021 001:43:00"),
+      // endTime: new Date("June 7, 2021 07:00:00"),
       times: [
         { id: 0, texto: "Dias", tiempo: 1 },
         { id: 1, texto: "Horas", tiempo: 1 },
@@ -47,21 +39,17 @@ export default {
       progreso: 0,
       // isActive: false,
       timeinterval: 1000,
-      showRegalo: false,
+      regalo: false,
     };
   },
   components: {
     TimeItem,
     ProgressItem,
+    Fireworks,
   },
   methods: {
     updateTimer: function() {
-      if (
-        this.times[3].tiempo > 0 ||
-        this.times[2].tiempo > 0 ||
-        this.times[1].tiempo > 0 ||
-        this.times[0].tiempo > 0
-      ) {
+      if (this.times[3].tiempo > 0 || this.times[2].tiempo > 0 || this.times[1].tiempo > 0 || this.times[0].tiempo > 0) {
         this.getTimeRemaining();
         this.updateProgressBar();
       } else {
@@ -87,19 +75,19 @@ export default {
       // let startTime = Date.parse(new Date(this.startTime));
       let currentTime = Date.parse(new Date());
       let endTime = Date.parse(new Date(this.endTime));
-      this.progreso = parseFloat(
-        ((currentTime - startTime) / (endTime - startTime)) * 100
-      ).toFixed(6);
+      this.progreso = parseFloat(((currentTime - startTime) / (endTime - startTime)) * 100).toFixed(6);
+      if (this.progreso >= 100) {
+        this.regalo = true;
+        clearInterval(this.timeinterval);
+        this.timeinterval = null;
+      }
     },
   },
   created: function() {
-    if (this.progreso <= 100) {
-      this.updateTimer();
-      this.timeinterval = setInterval(() => this.updateTimer(), 1000);
-    } else {
-      this.showRegalo = true;
-    }
+    this.updateTimer();
+    this.timeinterval = setInterval(() => this.updateTimer(), 1000);
   },
+  watch: function() {},
 };
 </script>
 
