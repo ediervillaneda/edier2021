@@ -4,7 +4,7 @@
 
     <main class="d-flex align-content-around flex-wrap align-content-between text-center" style="height: 90vh!important;" v-else>
       <h1 class="w-100">Faltan</h1>
-      <div class="row d-flex justify-content-between w-100">
+      <div class="row ">
         <div v-for="time in times" :key="time.id" class="col-3">
           <time-item :time="time"></time-item>
         </div>
