@@ -2,17 +2,24 @@
   <div>
     <fireworks v-if="regalo"></fireworks>
 
-    <main class="d-flex align-content-around flex-wrap align-content-between text-center" style="height: 90vh!important;" v-else>
+    <main
+      class="d-flex align-content-around flex-wrap align-content-between text-center"
+      style="height: 90vh !important"
+      v-else
+    >
       <h1 class="w-100">Faltan</h1>
-      <div class="row ">
+      <div class="row w-100">
         <div v-for="time in times" :key="time.id" class="col-3">
           <time-item :time="time"></time-item>
         </div>
-        <div class=" col-12 w-100" v-if="progreso">
+        <div class="col-12 w-100" v-if="progreso">
           <progress-item :progreso="progreso"></progress-item>
         </div>
       </div>
-      <h1 class="w-100"><span>&#128149;</span>Para el cumpleaños de Clarita <span>&#128149;</span></h1>
+      <h1 class="w-100">
+        <span>&#128149;</span>Para el cumpleaños de Clarita
+        <span>&#128149;</span>
+      </h1>
       <p class="w-100">Ya casi cumple años mi persona favorita.</p>
     </main>
   </div>
@@ -48,8 +55,13 @@ export default {
     Fireworks,
   },
   methods: {
-    updateTimer: function() {
-      if (this.times[3].tiempo > 0 || this.times[2].tiempo > 0 || this.times[1].tiempo > 0 || this.times[0].tiempo > 0) {
+    updateTimer: function () {
+      if (
+        this.times[3].tiempo > 0 ||
+        this.times[2].tiempo > 0 ||
+        this.times[1].tiempo > 0 ||
+        this.times[0].tiempo > 0
+      ) {
         this.getTimeRemaining();
         this.updateProgressBar();
       } else {
@@ -58,7 +70,7 @@ export default {
         this.progreso = 0;
       }
     },
-    getTimeRemaining: function() {
+    getTimeRemaining: function () {
       let t = Date.parse(this.endTime) - Date.parse(new Date());
       if (t >= 0) {
         this.times[3].tiempo = Math.floor((t / 1000) % 60); //seconds
@@ -70,12 +82,14 @@ export default {
         this.progreso = 100;
       }
     },
-    updateProgressBar: function() {
+    updateProgressBar: function () {
       let startTime = Date.parse(new Date(this.endTime).getFullYear() - 1);
       // let startTime = Date.parse(new Date(this.startTime));
       let currentTime = Date.parse(new Date());
       let endTime = Date.parse(new Date(this.endTime));
-      this.progreso = parseFloat(((currentTime - startTime) / (endTime - startTime)) * 100).toFixed(6);
+      this.progreso = parseFloat(
+        ((currentTime - startTime) / (endTime - startTime)) * 100
+      ).toFixed(6);
       if (this.progreso >= 100) {
         this.regalo = true;
         clearInterval(this.timeinterval);
@@ -83,11 +97,11 @@ export default {
       }
     },
   },
-  created: function() {
+  created: function () {
     this.updateTimer();
     this.timeinterval = setInterval(() => this.updateTimer(), 1000);
   },
-  watch: function() {},
+  watch: function () {},
 };
 </script>
 
