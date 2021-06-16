@@ -42,7 +42,7 @@ export default {
       progreso: 0,
       // isActive: false,
       timeinterval: 1000,
-      regalo: true,
+      regalo: false,
     };
   },
   components: {
