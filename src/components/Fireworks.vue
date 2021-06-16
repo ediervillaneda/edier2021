@@ -1,9 +1,6 @@
 <template>
   <div class="fireworks">
-    <h2 class="saludo text-center">
-      <span>&#128149;</span> <span>&#128149;</span> <span>&#128149;</span> <br/>
-      Feliz Cumple Mi Adoración <br/>
-       <span>&#128149;</span> <span>&#128149;</span> <span>&#128149;</span></h2>
+    <h2 class="saludo text-center">Feliz Cumple Edier!!</h2>
     <div class="contenedor">
       <div class="arm arm--left">
         <div class="armsleeve sleeve--left"></div>
@@ -450,7 +447,7 @@ export default {
   position: absolute;
   top: 44%;
   left: -1%;
-  background-color: #153a3a;
+  background-color: #464d4d;
   border: 1px solid black;
   width: 100px;
   height: 55px;
@@ -468,7 +465,7 @@ export default {
   right: -1%;
   width: 40px;
   height: 32px;
-  background-color: #153a3a;
+  background-color: #464d4d;
   border: 1px solid black;
   border-radius: 0 40% 40% 0 / 0 50% 50% 0;
 }
@@ -507,7 +504,7 @@ export default {
   position: absolute;
   bottom: -1%;
   left: -1%;
-  background-color: rgb(48, 29, 14);
+  background-color: rgb(41, 69, 112);
   border: 1px solid black;
   width: 100px;
   height: 55px;
@@ -519,7 +516,7 @@ export default {
   position: absolute;
   width: 31px;
   height: 40px;
-  background-color: rgb(48, 29, 14);
+  background-color: rgb(41, 69, 112);
   border: 1px solid black;
   border-radius: 50% 50% 0 0 / 30% 30% 0 0;
 }
