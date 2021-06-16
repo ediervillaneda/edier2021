@@ -2,6 +2,6 @@ module.exports = {
     configureWebpack: {
         devtool: 'source-map'
     },
-    publicPath: process.env.NODE_ENV === 'production' ? '/claris2021/' : '/'
+    publicPath: process.env.NODE_ENV === 'production' ? '/edier2021/' : '/'
 
 }

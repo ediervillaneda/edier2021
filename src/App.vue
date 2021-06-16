@@ -16,11 +16,7 @@
           <progress-item :progreso="progreso"></progress-item>
         </div>
       </div>
-      <h1 class="w-100">
-        <span>&#128149;</span>Para el cumpleaños de Clarita
-        <span>&#128149;</span>
-      </h1>
-      <p class="w-100">Ya casi cumple años mi persona favorita.</p>
+      <h1 class="w-100">Para el cumpleaños de Edier</h1>
     </main>
   </div>
 </template>
@@ -36,7 +32,7 @@ export default {
     return {
       startTime: Date.now(),
       // endTime: new Date("May 29, 2021 001:43:00"),
-      endTime: new Date("June 7, 2021 07:00:00"),
+      endTime: new Date("June 18, 2021 05:20:00"),
       times: [
         { id: 0, texto: "Dias", tiempo: 1 },
         { id: 1, texto: "Horas", tiempo: 1 },
@@ -55,7 +51,7 @@ export default {
     Fireworks,
   },
   methods: {
-    updateTimer: function () {
+    updateTimer: function() {
       if (
         this.times[3].tiempo > 0 ||
         this.times[2].tiempo > 0 ||
@@ -70,7 +66,7 @@ export default {
         this.progreso = 0;
       }
     },
-    getTimeRemaining: function () {
+    getTimeRemaining: function() {
       let t = Date.parse(this.endTime) - Date.parse(new Date());
       if (t >= 0) {
         this.times[3].tiempo = Math.floor((t / 1000) % 60); //seconds
@@ -82,7 +78,7 @@ export default {
         this.progreso = 100;
       }
     },
-    updateProgressBar: function () {
+    updateProgressBar: function() {
       let startTime = Date.parse(new Date(this.endTime).getFullYear() - 1);
       // let startTime = Date.parse(new Date(this.startTime));
       let currentTime = Date.parse(new Date());
@@ -97,11 +93,11 @@ export default {
       }
     },
   },
-  created: function () {
+  created: function() {
     this.updateTimer();
     this.timeinterval = setInterval(() => this.updateTimer(), 1000);
   },
-  watch: function () {},
+  watch: function() {},
 };
 </script>
 
